@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "",
+=======
+    "password": "@Phoenix84",
+>>>>>>> master
     "database": "registry_db",
     "host": "localhost",
     "dialect": "mysql"
