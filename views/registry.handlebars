@@ -24,24 +24,31 @@
 
             <button type="submit" class="btn btn-primary" id="submit-product">Submit</button>
           </form>
-          
+
         </div>
       </div>
     </div>
   </div>
-  </div>
-  <br>
-   <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Item List</h5>
-          
-          <a href="/">← Back To Home</a>
-        </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-8 offset-2">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Item List</h5>
+        <ul>
+        {{#each Products}}
+        {{#unless isPurchased}}
+        
+        <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
+        {{/unless}}
+        {{/each}}
+</ul>
+        <a href="/">← Back To Home</a>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!--Javascript -->
@@ -76,7 +83,7 @@
           store: $("#store").val(),
           price: $("#price").val(),
           isPurchased: false
-         
+
         };
         console.log(newProduct);
 
