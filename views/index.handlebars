@@ -57,18 +57,6 @@
           </div>
       </div> 
 
-          {{!-- <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="user-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
-        </div> --}}
-
-        {{!--Partner Name  --}}
-        {{!-- <div class="md-form mb-5">
-          <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="partner-name" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Partner name</label>
-        </div> --}}
-
         {{!-- Email --}}
         <div class="md-form mb-5">
           <i class="fa fa-envelope prefix grey-text"></i>
@@ -89,8 +77,8 @@
         </div> --}}
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <form action="wireframe1.handlebars">
-          <button id="create-submit" class="btn btn-dark">Create Registry</button>
+        <form action="wireframe1.handlebars" name="createRegistry">
+          <button id="create" class="btn btn-dark">Create Registry</button>
         </form>
       </div>
     </div>
@@ -133,28 +121,32 @@
     $(document).ready(function() {
 
         // Capture the form inputs
-        $("#submit").on("click", function(event) {
+        $("#create").on("click", function(event) {
           event.preventDefault();
+          console.log("i clicked dammit"); 
     
           // Form validation
           function validateForm() {
             var isValid = true;
-            $(".form-control").each(function() {
+            $("#modalRegisterForm .form-control").each(function() {
               if ($(this).val() === "") {
                 isValid = false;
               }
             });
+
+            return isValid; 
           }
 
           // If all required fields are filled
           if (validateForm() == true) {
             // Create an object for the user"s data
             var newUser = {
-              userFirstName: $("#user-first-name").val(),
-              userLastName: $("#user-last-name").val(),
+              firstName: $("#user-first-name").val(),
+              lastName: $("#user-last-name").val(),
               email: $("#email").val()
               //password: $("#password").val()
             };
+            console.log(newUser); 
     
             // Send the POST request.
             $.ajax("/api/users", {
@@ -162,19 +154,18 @@
               data: newUser
             }).then(
               function() {
-                console.log("created new cat");
+                console.log("created new user");
                 // Reload the page to get the updated list
                 location.reload();
               }
             )
-            else {
+            
+          }
+          else {
               alert("Please fill out ALL fields before submitting!");
             }
-          }
         });
       });
 
+    </script>
 
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
