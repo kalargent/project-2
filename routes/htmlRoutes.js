@@ -21,7 +21,12 @@ module.exports = function(app) {
   // });
 
   app.get("/registry", function(req, res) {
-    res.render("registry");
+    db.Product.findAll({}).then(function(dbProduct){
+      var productObj ={
+        Products: dbProduct
+      }
+    res.render("registry", productObj);
+    }); 
   });
 
   // Render 404 page for any unmatched routes
