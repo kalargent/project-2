@@ -17,11 +17,15 @@ module.exports = function(app) {
     });
 
   // Create a new product
-  // app.post("/api/examples", function(req, res) {
-  //   db.Product.create(req.body).then(function(dbProduct) {
-  //     res.json(dbProduct);
-  //   });
-  // });
+  app.post("/api/products", function(req, res) {
+    db.Product.create(req.body).then(function(dbProduct) {
+      res.json(dbProduct);
+    });
+  });
+
+  // app.get("/api/products", function(req,res){
+  //   console.log("you're app get")
+  // })
 
   // Delete an example by id
 //   app.delete("/api/examples/:id", function(req, res) {
