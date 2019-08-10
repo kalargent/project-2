@@ -23,9 +23,11 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/api/products", function(req,res){
-  //   console.log("you're app get")
-  // })
+  app.get("/api/products", function(req,res){
+    db.Product.findAll({}).then(function(dbProduct){
+      res.json(dbProduct)
+    }); 
+  })
 
   // Delete an example by id
   app.delete("/api/products/:id", function(req, res) {
