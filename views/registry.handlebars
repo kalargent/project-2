@@ -43,6 +43,7 @@
               <th>Product Name</th>
               <th>Store Name</th>
               <th>Price</th>
+              <th></th>
             </tr>
             {{#each Products}}
               {{#unless isPurchased}}
@@ -51,7 +52,8 @@
               <td>{{this.id}}</td>
               <td>{{this.productName}}</td>
               <td>{{this.store}}</td>
-              <td>{{this.price}}</td>
+              <td>$ {{this.price}}</td>
+              <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
             
               
             </tr>
@@ -127,6 +129,24 @@
         alert("Please fill out ALL fields before submitting!");
       }
     });
+
+    //Delete request
+     $(".delete-btn").on("click", function (event) {
+      event.preventDefault();
+      console.log("I clicked delete button");
+      var id = $(this).data("id");
+
+      $.ajax("/api/products/" + id, {
+        type:"DELETE"
+      }).then(
+      function(){
+        console.log("deleted id ", + id);
+        location.reload();
+      }
+
+      );
+
+  });
   });
 
 </script>
