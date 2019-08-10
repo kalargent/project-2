@@ -31,19 +31,43 @@
   </div>
 </div>
 <br>
-<div class="row">
+<div class="row table text-center">
   <div class="col-8 offset-2">
     <div class="card mt-4">
       <div class="card-body">
-        <h5 class="card-title">Item List</h5>
-        <ul>
+        <h3 class="card-title">Item List</h3>
+        <table>
+          
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Store Name</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+            {{#each Products}}
+              {{#unless isPurchased}}
+            <tr>
+              
+              <td>{{this.id}}</td>
+              <td>{{this.productName}}</td>
+              <td>{{this.store}}</td>
+              <td>$ {{this.price}}</td>
+              <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
+            
+              
+            </tr>
+              {{/unless}}
+              {{/each}}
+        </table>
+        {{!-- <ul>
         {{#each Products}}
         {{#unless isPurchased}}
         
         <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
         {{/unless}}
         {{/each}}
-</ul>
+</ul> --}}
         <a href="/">← Back To Home</a>
       </div>
     </div>
@@ -105,6 +129,24 @@
         alert("Please fill out ALL fields before submitting!");
       }
     });
+
+    //Delete request
+     $(".delete-btn").on("click", function (event) {
+      event.preventDefault();
+      console.log("I clicked delete button");
+      var id = $(this).data("id");
+
+      $.ajax("/api/products/" + id, {
+        type:"DELETE"
+      }).then(
+      function(){
+        console.log("deleted id ", + id);
+        location.reload();
+      }
+
+      );
+
+  });
   });
 
 </script>

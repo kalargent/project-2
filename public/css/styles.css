@@ -40,3 +40,11 @@ h2 {
   width: 35%;
   font-weight: bold;
 }
+.table{
+  width: 70rem;
+  margin-left: 28rem;  
+}
+th{
+  background-color: aliceblue;
+  width: 65rem;
+}
