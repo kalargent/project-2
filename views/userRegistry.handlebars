@@ -102,15 +102,11 @@
       // If all required fields are filled
       if (validateForm() == true) {
         // Create an object for the user"s data
-        var currentUser = JSON.parse(localStorage.getItem("currentUser")); 
-
-
         var newProduct = {
           productName: $("#product-name").val(),
           store: $("#store").val(),
           price: $("#price").val(),
-          isPurchased: false, 
-          userId: currentUser.id
+          isPurchased: false
 
         };
         console.log(newProduct);

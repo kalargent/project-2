@@ -20,8 +20,8 @@ describe("GET /api/products", function() {
   it("should find all products", function(done) {
     // Add some examples to the db to test with
     db.Product.bulkCreate([
-      { productName: "Spoon", store: "Target", price: 3.00 },
-      { productName: "Knife", store: "Target", price: 5.00 },
+      { productName: "Spoon", store: "Target", price: 3 },
+      { productName: "Knife", store: "Target", price: 5 },
     ]).then(function() {
       // Request the route that returns all examples
       request.get("/api/products").end(function(err, res) {
@@ -40,11 +40,11 @@ describe("GET /api/products", function() {
 
         expect(responseBody[0])
           .to.be.an("object")
-          .that.includes({ productName: "Spoon", store: "Target", price: 3.00 });
+          .that.includes({ productName: "Spoon", store: "Target", price: 3 });
 
         expect(responseBody[1])
           .to.be.an("object")
-          .that.includes({ productName: "Knife", store: "Target", price: 5.00 });
+          .that.includes({ productName: "Knife", store: "Target", price: 5 });
 
         // The `done` function is used to end any asynchronous tests
         done();

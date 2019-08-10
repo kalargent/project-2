@@ -29,6 +29,20 @@ module.exports = function(app) {
     }); 
   });
 
+  // app.get("/:user", function (req, res){
+  //   db.users.findOne({
+  //     where: {
+  //       firstName: req.body
+  //     }, 
+  //     include: [db.Product]
+  //   }).then (function (dbUser) {
+  //     // res.json(dbUser); 
+  //     res.render("userRegistry"); 
+  //     console.log("you returned a user"); 
+  //     console.log(dbUser); 
+  //   })
+  // })
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
