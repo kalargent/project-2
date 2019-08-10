@@ -15,5 +15,11 @@ var User = sequelize.define("User", {
       allowNull: false, 
     },
   });
+
+  // User.associate = function(models) {
+  //   User.hasMany(models.Product, {
+  //     onDelete: "cascade"
+  //   });
+  // };
   return User;
 };

@@ -23,8 +23,24 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/api/products", function(req,res){
-  //   console.log("you're app get")
+  // For the tests 
+  app.get("/api/products", function(req,res){
+    db.Product.findAll({}).then(function(dbProduct){
+      res.json(dbProduct)
+    }); 
+  })
+
+  // app.get("/:user", function (req, res) {
+  //   db.users.findOne({
+  //     where: {
+  //       firstName: req.body
+  //     }, 
+  //     include: [db.Product]
+  //   }).then (function (dbUser) {
+  //     res.json(dbUser); 
+  //     console.log("you returned a user"); 
+  //     console.log(dbUser); 
+  //   })
   // })
 
   // Delete an example by id

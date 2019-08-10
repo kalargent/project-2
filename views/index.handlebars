@@ -1,29 +1,30 @@
-
 {{!-- USER OPTIONS --}}
 <div class="container index-container">
-    <div class = "background-opacity"></div>
+  <div class="background-opacity"></div>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-            <h2>Gift Registry</h2>
-            <hr>
-            <div class="buttons">
-              <h3>Welcome...let's get started!</h3>
-                <br>
-                <a href="" class="btn index-btn btn-light" data-toggle="modal" data-target="#modalRegisterForm">Create a Registry</a>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+      <h2>Gift Registry</h2>
+      <hr>
+      <div class="buttons">
+        <h3>Welcome...let's get started!</h3>
+        <br>
+        <a href="" class="btn index-btn btn-light" data-toggle="modal" data-target="#modalRegisterForm">Create a
+          Registry</a>
 
-                <a href="" class="btn index-btn btn-light" data-toggle="modal" data-target="#modalFindRegistry">Find a Registry</a>
+        <a href="" class="btn index-btn btn-light" data-toggle="modal" data-target="#modalFindRegistry">Find a
+          Registry</a>
 
 
-                    {{!-- <button type="button" id="create" class="btn index-btn  btn-light">Create A Registry</button> --}}
-                    
-                    {{!-- <button type="button" class="btn index-btn btn-light">Find A Registry</button> --}}
+        {{!-- <button type="button" id="create" class="btn index-btn  btn-light">Create A Registry</button> --}}
 
-                    {{!-- will fixed login link later --}}
-                    <button type="button" class="btn index-btn btn-light">Login</button>
-            </div>
-        </div>
+        {{!-- <button type="button" class="btn index-btn btn-light">Find A Registry</button> --}}
+
+        {{!-- will fixed login link later --}}
+        <button type="button" class="btn index-btn btn-light">Login</button>
+      </div>
     </div>
+  </div>
 </div>
 
 {{!-- Modal/CREATE --}}
@@ -41,21 +42,21 @@
       <div class="modal-body mx-3">
         <div class="form-row">
           <div class="col">
-              <!-- First name -->
-              <div class="md-form mb-5">
-                <i class="fa fa-user prefix grey-text"></i>
-                  <input type="text" id="user-first-name" class="form-control">
-                  <label for="materialRegisterFormFirstName">First name</label>
-              </div>
+            <!-- First name -->
+            <div class="md-form mb-5">
+              <i class="fa fa-user prefix grey-text"></i>
+              <input type="text" id="user-first-name" class="form-control">
+              <label for="materialRegisterFormFirstName">First name</label>
+            </div>
           </div>
           <div class="col">
-              <!-- Last name -->
-              <div class="md-form">
-                <input type="email" id="user-last-name" class="form-control">
-                <label for="materialRegisterFormLastName">Last name</label>
-              </div>
+            <!-- Last name -->
+            <div class="md-form">
+              <input type="email" id="user-last-name" class="form-control">
+              <label for="materialRegisterFormLastName">Last name</label>
+            </div>
           </div>
-      </div> 
+        </div>
 
         {{!-- Email --}}
         <div class="md-form mb-5">
@@ -85,88 +86,107 @@
   </div>
 </div>
 
-  {{!--Modal/Find A Registry --}}
+{{!--Modal/Find A Registry --}}
 <div class="modal fade" id="modalFindRegistry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Create a Gift Registry</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Find a Gift Registry</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <div class="modal-body mx-3">
-          <div class="md-form mb-5">
-            <i class="fa fa-search prefix grey-text"></i>
-            <input type="search" id="search-registry" class="form-control validate">
-            <label data-error="wrong" data-success="right" for="orangeForm-search">Search by name</label>
-          </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fa fa-search prefix grey-text"></i>
+          <input type="search" id="search-registry" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-search">Search by name</label>
         </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button class="btn btn-dark">Find Registry</button>
-        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-dark" id="search-name">Find Registry</button>
       </div>
     </div>
   </div>
+</div>
 
 
 
 
-    <!--Javascript -->
+<!--Javascript -->
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-    // Material Select Initialization for Form
-    $(document).ready(function() {
+  // Material Select Initialization for Form
+  $(document).ready(function () {
 
-        // Capture the form inputs
-        $("#create").on("click", function(event) {
-          event.preventDefault();
-          console.log("i clicked dammit"); 
-    
-          // Form validation
-          function validateForm() {
-            var isValid = true;
-            $("#modalRegisterForm .form-control").each(function() {
-              if ($(this).val() === "") {
-                isValid = false;
-              }
-            });
+    // Capture the form inputs
+    $("#create").on("click", function (event) {
+      event.preventDefault();
+      console.log("i clicked dammit");
 
-            return isValid; 
+      // Form validation
+      function validateForm() {
+        var isValid = true;
+        $("#modalRegisterForm .form-control").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
           }
-
-          // If all required fields are filled
-          if (validateForm() == true) {
-            // Create an object for the user"s data
-            var newUser = {
-              firstName: $("#user-first-name").val(),
-              lastName: $("#user-last-name").val(),
-              email: $("#email").val()
-              //password: $("#password").val()
-            };
-            console.log(newUser); 
-    
-            // Send the POST request.
-            $.ajax("/api/users", {
-              type: "POST",
-              data: newUser
-            }).then(
-              function() {
-                console.log("created new user");
-                // Reload the page to get the updated list
-                //location.reload();
-                window.location.href= "/registry";
-              }
-            )
-            
-          }
-          else {
-              alert("Please fill out ALL fields before submitting!");
-            }
         });
-      });
 
-    </script>
+        return isValid;
+      }
 
+      // If all required fields are filled
+      if (validateForm() == true) {
+        // Create an object for the user"s data
+        var newUser = {
+          firstName: $("#user-first-name").val(),
+          lastName: $("#user-last-name").val(),
+          email: $("#email").val()
+          //password: $("#password").val()
+        };
+        console.log(newUser);
+
+        // Send the POST request.
+        $.ajax("/api/users", {
+          type: "POST",
+          data: newUser
+        }).then(
+          function (user) {
+            console.log("created new user");
+            console.log(user); 
+            // Reload the page to get the updated list
+            //location.reload();
+            localStorage.setItem("currentUser", JSON.stringify(user)); 
+            window.location.href = "/registry";
+          }
+        )
+
+      }
+      else {
+        alert("Please fill out ALL fields before submitting!");
+      }
+    });
+
+    $("#search-name").on("click", function (event) {
+      event.preventDefault();
+      console.log("i am looking for a registry");
+      var registry = $("#search-registry").val();
+      console.log(registry);
+
+      $.ajax("api/:user", {
+        type: "GET",
+        data: registry
+      })
+
+        .then(function () {
+          console.log("fetching the registry");
+          window.location.href = "/?user=" +registry;
+        })
+    })
+
+  });
+
+</script>
