@@ -1,79 +1,91 @@
-<div class="container">
+<div class="container2">
   <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Registry List</h5>
-          <form id="product-form">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Product</label>
-              <input type="text" class="form-control" id="product-name" aria-describedby="productName"
-                placeholder="Enter product name">
+    <div class="col-lg-12">
+      <div class="reg-heading">
+        {{!-- User Name should appear --}}
+        <div class="reg-user-name">{{this.user}}</div>
+        <h2 class="reg-title">Welcome to Your Registry</h2>
+        <p>Please enter the name if the item that you would like to add to your registry below.</p>
+      </div>
+    </div>  
+  </div>
 
-            </div>
-            <div class="form-group">
-              <label for="store">Store</label>
-              <input type="text" class="form-control" id="store" placeholder="Enter the store name">
-            </div>
+  <div class="row add-product-row">
+    <div class="col-lg-3">
+      <div class="registry-container">
+        <div class="card mt-4">
+          <div class="card-body reg-card-body">
+            <h5 class="card-title reg-card-title">Registry List</h5>
+            <form id="product-form">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Product</label>
+                <input type="text" class="form-control" id="product-name" aria-describedby="productName"
+                  placeholder="Enter product name">
 
-            <div class="form-group">
-              <label for="price">Price</label>
-              <input type="text" class="form-control" id="price" placeholder="Enter the procuct price">
-            </div>
+              </div>
+              <div class="form-group">
+                <label for="store">Store</label>
+                <input type="text" class="form-control" id="store" placeholder="Enter the store name">
+              </div>
 
+              <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" placeholder="Enter the procuct price">
+              </div>
 
-            <button type="submit" class="btn btn-primary" id="submit-product">Submit</button>
-          </form>
+              <button type="submit" class="btn btn-light" id="submit-product">Add Item</button>
+            </form>
 
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<br>
-<div class="row table text-center">
-  <div class="col-8 offset-2">
-    <div class="card mt-4">
-      <div class="card-body">
-        <h3 class="card-title">Item List</h3>
-        <table>
-          
-            <tr>
-              <th>Product ID</th>
-              <th>Product Name</th>
-              <th>Store Name</th>
-              <th>Price</th>
-              <th></th>
-            </tr>
-            {{#each Products}}
+    <br>
+      <div class="col-lg-9">
+        <div class="table text-center">
+          <div class="card mt-4">
+            <div class="card-body">
+              <h3 class="card-title">Item List</h3>
+                <table>
+
+                  <tr class="table-header">
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Store Name</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                  </tr>
+                  {{#each Products}}
+                  {{#unless isPurchased}}
+                  <tr>
+
+                    <td>{{this.id}}</td>
+                    <td>{{this.productName}}</td>
+                    <td>{{this.store}}</td>
+                    <td>$ {{this.price}}</td>
+                    <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
+
+
+                  </tr>
+                  {{/unless}}
+                  {{/each}}
+                </table>
+                {{!-- <ul>
+              {{#each Products}}
               {{#unless isPurchased}}
-            <tr>
               
-              <td>{{this.id}}</td>
-              <td>{{this.productName}}</td>
-              <td>{{this.store}}</td>
-              <td>$ {{this.price}}</td>
-              <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
-            
-              
-            </tr>
+              <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
               {{/unless}}
               {{/each}}
-        </table>
-        {{!-- <ul>
-        {{#each Products}}
-        {{#unless isPurchased}}
-        
-        <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
-        {{/unless}}
-        {{/each}}
-</ul> --}}
-        <a href="/">← Back To Home</a>
+              </ul> --}}
+                <a href="/">← Back To Home</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
   </div>
 </div>
-</div>
+
 
 <!--Javascript -->
 
@@ -102,14 +114,14 @@
       // If all required fields are filled
       if (validateForm() == true) {
         // Create an object for the user"s data
-        var currentUser = JSON.parse(localStorage.getItem("currentUser")); 
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 
         var newProduct = {
           productName: $("#product-name").val(),
           store: $("#store").val(),
           price: $("#price").val(),
-          isPurchased: false, 
+          isPurchased: false,
           userId: currentUser.id
 
         };
@@ -135,22 +147,22 @@
     });
 
     //Delete request
-     $(".delete-btn").on("click", function (event) {
+    $(".delete-btn").on("click", function (event) {
       event.preventDefault();
       console.log("I clicked delete button");
       var id = $(this).data("id");
 
       $.ajax("/api/products/" + id, {
-        type:"DELETE"
+        type: "DELETE"
       }).then(
-      function(){
-        console.log("deleted id ", + id);
-        location.reload();
-      }
+        function () {
+          console.log("deleted id ", + id);
+          location.reload();
+        }
 
       );
 
-  });
+    });
   });
 
 </script>

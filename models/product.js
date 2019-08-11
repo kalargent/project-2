@@ -20,10 +20,10 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false, 
         }, 
 
-        userId: {
-          type: DataTypes.INTEGER, 
-          defaultValue: 0, 
-        }
+        // userId: {
+        //   type: DataTypes.INTEGER, 
+        //   defaultValue: 0, 
+        // }
 
       });
 
