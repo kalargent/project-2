@@ -31,9 +31,9 @@ module.exports = function(sequelize, DataTypes) {
         // We're saying that a Post should belong to an Author
         // A Post can't be created without an Author due to the foreign key constraint
         Product.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false
-          }
+          // foreignKey: {
+          //   allowNull: false
+          // }
         });
       };
 
