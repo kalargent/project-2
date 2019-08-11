@@ -16,10 +16,10 @@ var User = sequelize.define("User", {
     },
   });
 
-  // User.associate = function(models) {
-  //   User.hasMany(models.Product, {
-  //     onDelete: "cascade"
-  //   });
-  // };
+  User.associate = function(models) {
+    User.hasMany(models.Product, {
+      onDelete: "cascade"
+    });
+  };
   return User;
 };

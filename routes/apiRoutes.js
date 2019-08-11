@@ -30,18 +30,20 @@ module.exports = function(app) {
     }); 
   })
 
-  // app.get("/:user", function (req, res) {
-  //   db.users.findOne({
-  //     where: {
-  //       firstName: req.body
-  //     }, 
-  //     include: [db.Product]
-  //   }).then (function (dbUser) {
-  //     res.json(dbUser); 
-  //     console.log("you returned a user"); 
-  //     console.log(dbUser); 
-  //   })
-  // })
+ // app.get("/", function (req, res) {
+   // console.log(req.params);
+    // db.users.findOne({
+    //   where: {
+    //     firstName: req.body
+    //   }, 
+    //   include: [db.Product]
+    // }).then (function (dbUser) {
+    //   res.json(dbUser); 
+    //   console.log("you returned a user"); 
+    //   console.log(dbUser); 
+    // })
+   // res.json({});
+  //})
 
   // Delete an example by id
   app.delete("/api/products/:id", function(req, res) {
