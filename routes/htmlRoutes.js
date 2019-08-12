@@ -1,14 +1,5 @@
 var db = require("../models");
 
-<<<<<<< HEAD
-module.exports = function(app) {
- // Load index page
-  app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-=======
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
@@ -36,7 +27,6 @@ module.exports = function (app) {
         // res.send(dbUser);
        res.render("userRegistry",
        dbUser)
->>>>>>> e7daa3364d1b57a0cdc4949f83d4cefed746fe95
       });
     } else {
 res.render("index");
