@@ -157,10 +157,11 @@
           function (user) {
             console.log("created new user");
             console.log(user); 
+            var id = user.id
             // Reload the page to get the updated list
             //location.reload();
             localStorage.setItem("currentUser", JSON.stringify(user)); 
-            window.location.href = "/registry";
+            window.location.href = "/registry/" + id;
           }
         )
 
@@ -183,7 +184,7 @@
 
         .then(function () {
           console.log("fetching the registry");
-          window.location.href = "/?user=" +registry;
+          window.location.href = "/?user=" + registry;
         })
     })
 
