@@ -4,21 +4,16 @@
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
       <div class="index-container">
         <div class="background-opacity"></div>
-
         <h2>Wedding Registry</h2>
         <hr>
+        <h3 class="subtext">Welcome...let's get started!</h3>
+        {{!--Home buttons --}}
         <div class="buttons">
-          <h3 class="subtext">Welcome...let's get started!</h3>
-          <hr>
           <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalRegisterForm">Create a
             Registry</a>
-
           <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalFindRegistry">Find a
             Registry</a>
-          
-          <a href="" class="btn index-btn btn-dark" data-toggle="modal" 
-          data-target="#modalLoginRegistry">Login</a>
-
+          <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalLoginRegistry">Login</a>
         </div>
       </div>
     </div>
@@ -55,7 +50,6 @@
             </div>
           </div>
         </div>
-
         {{!-- Email --}}
         <div class="md-form mb-5">
           <i class="fa fa-envelope prefix grey-text"></i>
@@ -103,7 +97,6 @@
   </div>
 </div>
 
-
 {{!--Modal/Login --}}
 <div class="modal fade" id="modalLoginRegistry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -150,10 +143,8 @@
             isValid = false;
           }
         });
-
         return isValid;
       }
-
       // If all required fields are filled
       if (validateForm() == true) {
         // Create an object for the user"s data
@@ -179,12 +170,13 @@
             window.location.href = "/registry";
           }
         )
-
+        
       }
       else {
         alert("Please fill out ALL fields before submitting!");
       }
     });
+
     //Find Registry=========================================
     $("#search-name").on("click", function (event) {
       event.preventDefault();
@@ -196,7 +188,6 @@
         type: "GET",
         data: registry
       })
-
         .then(function () {
           console.log("fetching the registry");
           window.location.href = "/?user=" + registry;
@@ -204,7 +195,7 @@
     })
 
     //Login=========================================
-      $("#login").on("click", function (event) {
+        $("#login").on("click", function (event) {
       event.preventDefault();
       console.log("logging in....");
 
@@ -215,13 +206,11 @@
         type: "GET",
         data: registry
       })
-
         .then(function () {
           console.log("logging in to registry");
           window.location.href = "/?user=" + registry;
         })
     })
-
 
   });
 

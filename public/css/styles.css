@@ -2,15 +2,20 @@ body, html {
   height: 100%;
   margin: 0;
 }
+.navbar {
+  height: 90px;
+}
 .navbar-brand{
-/*font-family: 'Lobster', cursive;*/ 
-font-family: 'Dancing Script', cursive; 
- /*font-family: 'Satisfy', cursive;
-font-family: 'Kaushan Script', cursive;
-font-family: 'Vidaloka', serif;
-/*font-family: 'Playball', cursive; */  
-font-size: 55px;
-text-shadow: 2px 2px 3px lightpink
+  /*font-family: 'Lobster', cursive;*/ 
+  font-family: 'Dancing Script', cursive; 
+  /*font-family: 'Satisfy', cursive;
+  font-family: 'Kaushan Script', cursive;
+  font-family: 'Vidaloka', serif;
+  /*font-family: 'Playball', cursive; */  
+  font-size: 55px;
+  text-shadow: 2px 2px 3px lightpink;
+  margin-left: 3%;
+  padding-top: 0;
 }
 
 .container1 {
@@ -23,8 +28,13 @@ text-shadow: 2px 2px 3px lightpink
   max-width: 100%;
 }
 .container2 {
-  background-color: rgb(246, 208, 214);
+  background-color: rgb(255, 220, 226);
   height:100%;
+}
+.back-home-btn {
+  color: black;
+  font-weight: bold;
+  padding: 30px;
 }
 .modal-header {
   background-color: rgb(246, 208, 214);
@@ -90,6 +100,7 @@ p {
   font-family: 'Vidaloka', serif;
   font-weight: bolder;
   font-size: 30px;
+  padding-bottom: 20px;
 }
 .card-title {
   font-family: 'Vidaloka', serif;
@@ -103,12 +114,23 @@ p {
 .table-header {
   color: white; 
 }
-th{
+table th {
+  font-family: 'Vidaloka', serif;
   background-color: black;
-  font-weight: bold;
   font-size: 18px;
   width: 65rem;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+}
+table td {
+  font-family: 'Vidaloka', serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
 }
 p {
   font-weight: 500;
+  font-family: 'Vidaloka', serif;
 }
