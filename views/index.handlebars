@@ -1,27 +1,20 @@
-{{!-- USER OPTIONS --}}
-<div class="container index-container">
-  <div class="background-opacity"></div>
-
+<div class="container1">
+  {{!-- USER OPTIONS --}}
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-      <h2>Gift Registry</h2>
-      <hr>
-      <div class="buttons">
-        <h3>Welcome...let's get started!</h3>
-        <br>
-        <a href="" class="btn index-btn btn-light" data-toggle="modal" data-target="#modalRegisterForm">Create a
-          Registry</a>
-
-        <a href="" class="btn index-btn btn-light" data-toggle="modal" data-target="#modalFindRegistry">Find a
-          Registry</a>
-
-
-        {{!-- <button type="button" id="create" class="btn index-btn  btn-light">Create A Registry</button> --}}
-
-        {{!-- <button type="button" class="btn index-btn btn-light">Find A Registry</button> --}}
-
-        {{!-- will fixed login link later --}}
-        <button type="button" class="btn index-btn btn-light">Login</button>
+      <div class="index-container">
+        <div class="background-opacity"></div>
+        <h2>Wedding Registry</h2>
+        <hr>
+        <h3 class="subtext">Welcome...let's get started!</h3>
+        {{!--Home buttons --}}
+        <div class="buttons">
+          <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalRegisterForm">Create a
+            Registry</a>
+          <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalFindRegistry">Find a
+            Registry</a>
+          <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalLoginRegistry">Login</a>
+        </div>
       </div>
     </div>
   </div>
@@ -46,18 +39,21 @@
             <div class="md-form mb-5">
               <i class="fa fa-user prefix grey-text"></i>
               <input placeholder="First name" type="text" id="user-first-name" class="form-control">
-              <label for="user-first-name"></label>
+
+              <label for="user-firstname"></label>
+
             </div>
           </div>
           <div class="col">
             <!-- Last name -->
             <div class="md-form">
-              <input placeholder="Last name" type="text" id="user-last-name" class="form-control">
-              <label for="user-last-name"></label>
+
+              <input placeholder="Last-name" type="text" id="user-last-name" class="form-control">
+              <label for="user-lastname"></label>
+
             </div>
           </div>
         </div>
-
         {{!-- Email --}}
         <div class="md-form mb-5">
           <i class="fa fa-envelope prefix grey-text"></i>
@@ -70,12 +66,6 @@
           <input placeholder="Create password" type="password" id="password" class="form-control validate">
           <label data-error="wrong" data-success="right" for="password"></label>
         </div>
-        <!-- Wedding Date -->
-        {{!-- <div class="md-form mb-5">
-          <i class="fas fa-calender prefix grey-text"></i>
-            <input placeholder="Selected date" type="text" id="date-picker" class="form-control datepicker">
-            <label for="date-picker">Wedding Date?</label>
-        </div> --}}
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <form action="/registry" name="createRegistry">
@@ -100,8 +90,10 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fa fa-search prefix grey-text"></i>
-          <input placeholder="Search by name" type="search" id="search-registry" class="form-control validate">
-          <label data-error="wrong" data-success="right" for="orangeForm-search"></label>
+
+          <input placeholder="Search by name" type="text" id="search-registry" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="search"></label>
+
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
@@ -111,8 +103,31 @@
   </div>
 </div>
 
-
-
+{{!--Modal/Login --}}
+<div class="modal fade" id="modalLoginRegistry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Login to Registry</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <h5>Enter email associated with registry</h5>
+        <div class="md-form mb-5">
+          <i class="fa fa-search prefix grey-text"></i>
+          <input placeholder="Enter your email" type="email" id="login-registry" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="login"></label>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-dark" id="login">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--Javascript -->
 
@@ -121,7 +136,7 @@
   // Material Select Initialization for Form
   $(document).ready(function () {
 
-    // Capture the form inputs
+    // Create Registry================================
     $("#create").on("click", function (event) {
       event.preventDefault();
       console.log("i clicked dammit");
@@ -134,10 +149,8 @@
             isValid = false;
           }
         });
-
         return isValid;
       }
-
       // If all required fields are filled
       if (validateForm() == true) {
         // Create an object for the user"s data
@@ -156,20 +169,21 @@
         }).then(
           function (user) {
             console.log("created new user");
-            console.log(user); 
+            console.log(user);
             // Reload the page to get the updated list
             //location.reload();
-            localStorage.setItem("currentUser", JSON.stringify(user)); 
+            localStorage.setItem("currentUser", JSON.stringify(user));
             window.location.href = "/registry";
           }
         )
-
+        
       }
       else {
         alert("Please fill out ALL fields before submitting!");
       }
     });
 
+    //Find Registry=========================================
     $("#search-name").on("click", function (event) {
       event.preventDefault();
       console.log("i am looking for a registry");
@@ -180,10 +194,27 @@
         type: "GET",
         data: registry
       })
-
         .then(function () {
           console.log("fetching the registry");
-          window.location.href = "/?user=" +registry;
+          window.location.href = "/?user=" + registry;
+        })
+    })
+
+    //Login=========================================
+        $("#login").on("click", function (event) {
+      event.preventDefault();
+      console.log("logging in....");
+
+      var registry = $("#login-registry").val();
+      console.log(registry);
+
+      $.ajax("api/:user", {
+        type: "GET",
+        data: registry
+      })
+        .then(function () {
+          console.log("logging in to registry");
+          window.location.href = "/?user=" + registry;
         })
     })
 
