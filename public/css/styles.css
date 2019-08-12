@@ -41,8 +41,10 @@ h2 {
   font-weight: bold;
 }
 .table{
-  width: 70rem;
-  margin-left: 28rem;  
+  /* width: 70rem; */
+  /* margin-left: 28rem;   */
+ margin-left: auto;
+ margin-right: auto;
 }
 th{
   background-color: aliceblue;
