@@ -32,16 +32,19 @@ module.exports = function(app) {
   });
 
   app.get("/registry/:id", function(req, res) {
-    console.log(parseInt(req.params.id)); 
+    console.log("this is number " + parseInt(req.params.id)); 
     if (parseInt(req.params.id)) {
       db.Product.findAll({
         where: {
           userId: parseInt(req.params.id)
         },
-        include: [db.Products]
+        include: [db.User]
       }).then(function(products) {
         console.log(products);
-        res.render("registry", products);
+        res.render("registry", 
+        {
+          products: products
+        });
       });
     } else {
       res.render("index");
