@@ -63,27 +63,14 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{!-- {{#each Product}}
-                    {{#each dataValues}}
-                    <tr>
-                      <td>{{this.id}}</td>
-                      <td>{{this.productName}}</td>
-                      <td>{{this.store}}</td>
-                      <td>{{this.price}}</td>
-                    </tr>
-                    {{/each}}
-                  {{/each}} --}}
-
                   {{#each products}}
-                    
                     <tr>
                       <td>{{this.id}}</td>
                       <td>{{this.productName}}</td>
                       <td>{{this.store}}</td>
-                      <td>{{this.price}}</td>
-                      <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
+                      <td>$ {{this.price}}</td>
+                      <td><button data-id="{{this.id}}" class="delete-btn btn-dark"><i class="fa fa-times"></i></button></td>
                     </tr>
-                    
                   {{/each}}
                 </tbody>
               </table>

@@ -16,6 +16,7 @@ body, html {
   text-shadow: 2px 2px 3px lightpink;
   margin-left: 3%;
   padding-top: 0;
+  animation-iteration-count: 1;
 }
 
 .container1 {
@@ -27,9 +28,17 @@ body, html {
   /* position: absolute; */
   max-width: 100%;
 }
-.container2 {
+.container2  {
   background-color: rgb(255, 220, 226);
   height:100%;
+}
+.container3 {
+  background-color: rgb(255, 220, 226);
+  height:100%;
+}
+.user-reg-card {
+  width:70%;
+  margin-left: 15%;
 }
 .back-home-btn {
   color: black;
