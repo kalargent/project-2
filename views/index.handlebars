@@ -13,7 +13,7 @@
             Registry</a>
           <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalFindRegistry">Find a
             Registry</a>
-          <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalLoginRegistry">Login</a>
+          {{!-- <a href="" class="btn index-btn btn-dark" data-toggle="modal" data-target="#modalLoginRegistry">Login</a> --}}
         </div>
       </div>
     </div>
@@ -60,12 +60,12 @@
           <input placeholder="Your email" type="email" id="email" class="form-control validate">
           <label data-error="wrong" data-success="right" for="email"></label>
         </div>
-        {{!--Password --}}
+        {{!-- Password
         <div class="md-form mb-4">
           <i class="fa fa-lock prefix grey-text"></i>
           <input placeholder="Create password" type="password" id="password" class="form-control validate">
           <label data-error="wrong" data-success="right" for="password"></label>
-        </div>
+        </div> --}}
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <form action="/registry" name="createRegistry">
@@ -91,7 +91,7 @@
         <div class="md-form mb-5">
           <i class="fa fa-search prefix grey-text"></i>
 
-          <input placeholder="Search by name" type="text" id="search-registry" class="form-control validate">
+          <input placeholder="Search by UserID" type="text" id="search-registry" class="form-control validate">
           <label data-error="wrong" data-success="right" for="search"></label>
 
         </div>
@@ -122,9 +122,9 @@
           <label data-error="wrong" data-success="right" for="login"></label>
         </div>
       </div>
-      <div class="modal-footer d-flex justify-content-center">
+      {{!-- <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-dark" id="login">Login</button>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
