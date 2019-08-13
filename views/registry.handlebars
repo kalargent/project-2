@@ -11,72 +11,84 @@
         </div>
         <h2 class="reg-title">Welcome to Your Registry</h2>
         <p>Please enter the name if the item that you would like to add to your registry below.</p>
-    </div>  
-  </div>
+      </div>
+    </div>
 
-  <div class="row add-product-row">
-    <div class="col-lg-3">
-      <div class="registry-container">
-        <div class="card mt-4">
-          <div class="card-body reg-card-body">
-            <h5 class="card-title reg-card-title">Add Items</h5>
-            <form id="product-form">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Product</label>
-                <input type="text" class="form-control" id="product-name" aria-describedby="productName"
-                  placeholder="Enter product name">
+    <div class="row add-product-row">
+      <div class="col-lg-3">
+        <div class="registry-container">
+          <div class="card mt-4">
+            <div class="card-body reg-card-body">
+              <h5 class="card-title reg-card-title">Add Items</h5>
+              <form id="product-form">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Product</label>
+                  <input type="text" class="form-control" id="product-name" aria-describedby="productName"
+                    placeholder="Enter product name">
 
-              </div>
-              <div class="form-group">
-                <label for="store">Store</label>
-                <input type="text" class="form-control" id="store" placeholder="Enter the store name">
-              </div>
+                </div>
+                <div class="form-group">
+                  <label for="store">Store</label>
+                  <input type="text" class="form-control" id="store" placeholder="Enter the store name">
+                </div>
 
-              <div class="form-group">
-                <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" placeholder="Enter the procuct price">
-              </div>
+                <div class="form-group">
+                  <label for="price">Price</label>
+                  <input type="text" class="form-control" id="price" placeholder="Enter the procuct price">
+                </div>
+                
+                <button type="submit" class="btn btn-light" id="submit-product">Add Item</button>
 
-              <button type="submit" class="btn btn-light" id="submit-product">Add Item</button>
-            </form>
+              </form>
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <br>
+      <br>
       <div class="col-lg-9">
         {{!-- <div class="table text-center"> --}}
-          <div class="card mt-4">
-            <div class="card-body">
-              <h3 class="card-title text-center">Registry Items</h3>
-              <div class="table-responsive">
-                <table class="table-striped">
-                  <thread>
-                    <tr class="table-header">
-                      <th>Product ID</th>
-                      <th>Product Name</th>
-                      <th>Store Name</th>
-                      <th>Price</th>
-                      <th>Remove</th>
-                    </tr>
-                  </thread>
-                  <tbody>
-                  {{#each Products}}
-                  {{#unless isPurchased}}
+        <div class="card mt-4">
+          <div class="card-body">
+            <h3 class="card-title text-center">Registry Items</h3>
+            <div class="table-responsive">
+              <table class="table-striped">
+                <thead>
+                  <tr class="table-header">
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Store Name</th>
+                    <th>Price</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{!-- {{#each Product}}
+                    {{#each dataValues}}
                     <tr>
                       <td>{{this.id}}</td>
                       <td>{{this.productName}}</td>
                       <td>{{this.store}}</td>
-                      <td>$ {{this.price}}</td>
+                      <td>{{this.price}}</td>
+                    </tr>
+                    {{/each}}
+                  {{/each}} --}}
+
+                  {{#each products}}
+                    
+                    <tr>
+                      <td>{{this.id}}</td>
+                      <td>{{this.productName}}</td>
+                      <td>{{this.store}}</td>
+                      <td>{{this.price}}</td>
                       <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
                     </tr>
-                  {{/unless}}
+                    
                   {{/each}}
-                  </tbody>
-                </table>
-              </div>
-                {{!-- <ul>
+                </tbody>
+              </table>
+            </div>
+            {{!-- <ul>
               {{#each Products}}
               {{#unless isPurchased}}
               
@@ -84,90 +96,94 @@
               {{/unless}}
               {{/each}}
               </ul> --}}
-            </div>
           </div>
+        </div>
         {{!-- </div> --}}
       </div>
+    </div>
   </div>
-</div>
 
 
-<!--Javascript -->
+  <!--Javascript -->
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-  // Material Select Initialization for Form
-  $(document).ready(function () {
+    // Material Select Initialization for Form
+    $(document).ready(function () {
 
-    // Capture the form inputs
-    $("#submit-product").on("click", function (event) {
-      event.preventDefault();
-      console.log("i clicked dammit");
+      // Capture the form inputs
+      $("#submit-product").on("click", function (event) {
+        event.preventDefault();
+        console.log("i clicked dammit");
 
-      // Form validation
-      function validateForm() {
-        var isValid = true;
-        $("#product-form .form-control").each(function () {
-          if ($(this).val() === "") {
-            isValid = false;
-          }
-        });
+        // Form validation
+        function validateForm() {
+          var isValid = true;
+          $("#product-form .form-control").each(function () {
+            if ($(this).val() === "") {
+              isValid = false;
+            }
+          });
 
-        return isValid;
-      }
-
-      // If all required fields are filled
-      if (validateForm() == true) {
-        // Create an object for the user"s data
-        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-
-        var newProduct = {
-          productName: $("#product-name").val(),
-          store: $("#store").val(),
-          price: $("#price").val(),
-          isPurchased: false,
-          userId: currentUser.id
-
-        };
-        console.log(newProduct);
-
-        // Send the POST request.
-        $.ajax("/api/products", {
-          type: "POST",
-          data: newProduct
-        }).then(
-          function () {
-            console.log("created new product");
-            // Reload the page to get the updated list
-            //location.reload();
-            location.reload();
-          }
-        )
-
-      }
-      else {
-        alert("Please fill out ALL fields before submitting!");
-      }
-    });
-
-    //Delete request
-    $(".delete-btn").on("click", function (event) {
-      event.preventDefault();
-      console.log("I clicked delete button");
-      var id = $(this).data("id");
-
-      $.ajax("/api/products/" + id, {
-        type: "DELETE"
-      }).then(
-        function () {
-          console.log("deleted id ", + id);
-          location.reload();
+          return isValid;
         }
 
-      );
+        // If all required fields are filled
+        if (validateForm() == true) {
+          // Create an object for the user's data
+          var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+          console.log("The current user is " + currentUser);
 
+
+          var newProduct = {
+            productName: $("#product-name").val(),
+            store: $("#store").val(),
+            price: $("#price").val(),
+            isPurchased: false,
+            userId: currentUser.id
+
+          };
+          console.log(newProduct);
+
+          // Send the POST request.
+          $.ajax("/api/products", {
+            type: "POST",
+            data: newProduct
+          }).then(
+            function (newProduct) {
+              //console.log(newProduct);
+              var id = newProduct.userId;
+              console.log(id);
+
+              // Reload the page to get the updated list
+              //location.reload();
+              window.location.href = "/registry/" + id;
+            }
+          )
+
+        }
+        else {
+          alert("Please fill out ALL fields before submitting!");
+        }
+      });
+
+      //Delete request
+      $(".delete-btn").on("click", function (event) {
+        event.preventDefault();
+        console.log("I clicked delete button");
+        var id = $(this).data("id");
+
+        $.ajax("/api/products/" + id, {
+          type: "DELETE"
+        }).then(
+          function () {
+            console.log("deleted id ", + id);
+            location.reload();
+          }
+
+        );
+
+      });
     });
-  });
 
-</script>
+  </script>
