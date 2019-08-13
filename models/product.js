@@ -20,19 +20,17 @@ module.exports = function(sequelize, DataTypes) {
           defaultValue: false, 
       }, 
 
-      userId: {
-        type: DataTypes.INTEGER, 
-        defaultValue: 0, 
-      }
+      // userId: {
+      //   type: DataTypes.INTEGER, 
+      //   defaultValue: 0, 
+      // }
 
     });
 
 
       Product.associate = function(models) {
         Product.belongsTo(models.User, {
-          // foreignKey: {
-          //   allowNull: false
-          // }
+          // foreignKey:{}
         });
       };
 

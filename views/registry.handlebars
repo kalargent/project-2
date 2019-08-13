@@ -140,7 +140,7 @@
             store: $("#store").val(),
             price: $("#price").val(),
             isPurchased: false,
-            userId: currentUser.id
+            UserId: currentUser.id
 
           };
           console.log(newProduct);
@@ -152,8 +152,9 @@
           }).then(
             function (newProduct) {
               //console.log(newProduct);
-              var id = newProduct.userId;
-              console.log(id);
+              var id = newProduct.UserId;
+              console.log(newProduct)
+              //console.log(id);
 
               // Reload the page to get the updated list
               //location.reload();
