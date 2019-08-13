@@ -32,7 +32,7 @@ module.exports = function(app) {
   });
 
   app.get("/registry/:id", function(req, res) {
-    console.log("this is number " + parseInt(req.params.id)); 
+    console.log("this is number " + req.params.id);  
     if (parseInt(req.params.id)) {
       db.Product.findAll({
         where: {
