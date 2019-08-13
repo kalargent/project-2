@@ -107,15 +107,12 @@
   <!--Javascript -->
 
   <script type="text/javascript">
-
     // Material Select Initialization for Form
     $(document).ready(function () {
-
       // Capture the form inputs
       $("#submit-product").on("click", function (event) {
         event.preventDefault();
         console.log("i clicked dammit");
-
         // Form validation
         function validateForm() {
           var isValid = true;
@@ -124,27 +121,21 @@
               isValid = false;
             }
           });
-
           return isValid;
         }
-
         // If all required fields are filled
         if (validateForm() == true) {
           // Create an object for the user's data
           var currentUser = JSON.parse(localStorage.getItem("currentUser"));
           console.log("The current user is " + currentUser);
-
-
           var newProduct = {
             productName: $("#product-name").val(),
             store: $("#store").val(),
             price: $("#price").val(),
             isPurchased: false,
             userId: currentUser.id
-
           };
           console.log(newProduct);
-
           // Send the POST request.
           $.ajax("/api/products", {
             type: "POST",
@@ -154,25 +145,21 @@
               //console.log(newProduct);
               var id = newProduct.userId;
               console.log(id);
-
               // Reload the page to get the updated list
               //location.reload();
               window.location.href = "/registry/" + id;
             }
           )
-
         }
         else {
           alert("Please fill out ALL fields before submitting!");
         }
       });
-
       //Delete request
       $(".delete-btn").on("click", function (event) {
         event.preventDefault();
         console.log("I clicked delete button");
         var id = $(this).data("id");
-
         $.ajax("/api/products/" + id, {
           type: "DELETE"
         }).then(
@@ -180,10 +167,7 @@
             console.log("deleted id ", + id);
             location.reload();
           }
-
         );
-
       });
     });
-
   </script>
