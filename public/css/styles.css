@@ -1,18 +1,59 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.navbar {
+  height: 90px;
+}
+.navbar-brand{
+  /*font-family: 'Lobster', cursive;*/ 
+  font-family: 'Dancing Script', cursive; 
+  /*font-family: 'Satisfy', cursive;
+  font-family: 'Kaushan Script', cursive;
+  font-family: 'Vidaloka', serif;
+  /*font-family: 'Playball', cursive; */  
+  font-size: 55px;
+  text-shadow: 2px 2px 3px lightpink;
+  margin-left: 3%;
+  padding-top: 0;
+}
+
+.container1 {
+  background: url(../images/car.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: center;
+  /* position: absolute; */
+  max-width: 100%;
+}
+.container2 {
+  background-color: rgb(255, 220, 226);
+  height:100%;
+}
+.back-home-btn {
+  color: black;
+  font-weight: bold;
+  padding: 30px;
+}
+.modal-header {
+  background-color: rgb(246, 208, 214);
+  color: black;
+}
+
 .list-group-item {
   line-height: 2.5;
 }
 
-body {
-  background: url(../images/car.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 .index-container {
   border: solid;
   max-width: 700px;
   margin-top: 90px;
   padding: 30px;
   position: relative;
+  margin-left: 28%;
+  z-index: 5;
+
 
 }
 .background-opacity {
@@ -27,26 +68,69 @@ body {
 hr {
   border-top: 1px solid rgba(0,0,0,.6);
 }
+.subtext {
+  font-weight: bold;
+}
 
 h2 {
+  font-family: 'Vidaloka', serif;
   font-size: 48px;
-  font-weight: 400;
+  font-weight: 600;
   text-decoration: underline;
   color: white;
-  text-shadow: 2px 2px 3px black;
-  padding-bottom: 20px;
+  text-shadow: 3px 3px 5px black;
+  /* padding-bottom: 20px; */
 }
 .index-btn {
   width: 35%;
   font-weight: bold;
 }
-.table{
-  /* width: 70rem; */
-  /* margin-left: 28rem;   */
- margin-left: auto;
- margin-right: auto;
+.reg-heading {
+  text-align: center;
+  padding-top: 20px;
 }
-th{
-  background-color: aliceblue;
+p {
+  font-size: 18px;
+}
+.add-product-row{
+  padding: 10px 80px;
+}
+.reg-card-title {
+  color: white;
+  font-family: 'Vidaloka', serif;
+  font-weight: bolder;
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+.card-title {
+  font-family: 'Vidaloka', serif;
+  font-weight: bolder;
+  font-size: 30px;
+}
+.reg-card-body {
+  background-color: black;
+  color: white;
+}
+.table-header {
+  color: white; 
+}
+table th {
+  font-family: 'Vidaloka', serif;
+  background-color: black;
+  font-size: 18px;
   width: 65rem;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+}
+table td {
+  font-family: 'Vidaloka', serif;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 5px;
+  text-align: center;
+}
+p {
+  font-weight: 500;
+  font-family: 'Vidaloka', serif;
 }

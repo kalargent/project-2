@@ -1,4 +1,4 @@
-<div class="container">
+{{!-- <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
@@ -30,7 +30,7 @@
     </div>
   </div>
 </div>
-<br>
+<br> --}}
 <div class="row table text-center">
   <div class="col-8 offset-2">
     <div class="card mt-4">
@@ -53,7 +53,7 @@
               <td>{{this.productName}}</td>
               <td>{{this.store}}</td>
               <td>$ {{this.price}}</td>
-              <td><button data-id="{{this.id}}" class="delete-btn"><i class="fa fa-trash"></i></button></td>
+              <td><button data-id="{{this.id}}" class="update-btn"><i class="fa fa-gift"></i></button></td>
             
               
             </tr>
@@ -83,7 +83,7 @@
   $(document).ready(function () {
 
     // Capture the form inputs
-    $("#submit-product").on("click", function (event) {
+  /**  $("#submit-product").on("click", function (event) {
       event.preventDefault();
       console.log("i clicked dammit");
 
@@ -129,18 +129,19 @@
         alert("Please fill out ALL fields before submitting!");
       }
     });
-
-    //Delete request
-     $(".delete-btn").on("click", function (event) {
+*/
+    //Update request
+     $(".update-btn").on("click", function (event) {
       event.preventDefault();
-      console.log("I clicked delete button");
+      console.log("I clicked update button");
       var id = $(this).data("id");
 
       $.ajax("/api/products/" + id, {
-        type:"DELETE"
+        type:"PUT",
+        isPurchased: true
       }).then(
       function(){
-        console.log("deleted id ", + id);
+        console.log("updated id ", + id);
         location.reload();
       }
 

@@ -51,4 +51,17 @@ module.exports = function(app) {
       res.json(dbProduct);
     });
   });
+
+
+// PUT route for updating items (userRegistry.handlebars)
+app.put("/api/products/:id", function(req, res) {
+  db.Product.update(
+  {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbProduct) {
+    res.json(dbProduct);
+  });
+});
 };
