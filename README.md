@@ -14,7 +14,7 @@ The Walk the Aisle application is designed to help users to create their wedding
 
 Collaborators: Alexis Rajis, Karen Largent, Pinar Gultekin
 
-Collaborators' Roles:
+Collaborators Roles:
 * Prototyping and Design - All
 * Custom CSS - Alexis Rajis
 * Frontend Dev - Alexis Rajis (primary)
@@ -29,6 +29,8 @@ The application is built with;
 * HTML
 * CSS
 * Bootstrap 
+* Fontawsome
+* MDB
 * Javascript
 * JQuery 
 * AJAX 
