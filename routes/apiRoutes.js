@@ -31,25 +31,29 @@ module.exports = function(app) {
     }); 
   })
 
- // app.get("/", function (req, res) {
-   // console.log(req.params);
-    // db.users.findOne({
-    //   where: {
-    //     firstName: req.body
-    //   }, 
-    //   include: [db.Product]
-    // }).then (function (dbUser) {
-    //   res.json(dbUser); 
-    //   console.log("you returned a user"); 
-    //   console.log(dbUser); 
-    // })
-   // res.json({});
-  //})
-
   // Delete an example by id
   app.delete("/api/products/:id", function(req, res) {
-    db.Product.destroy({ where: { id: req.params.id } }).then(function(dbProduct) {
+    db.Product.destroy({ 
+      where: { 
+        id: req.params.id 
+      } 
+    }).then(function(dbProduct) {
       res.json(dbProduct);
     });
   });
+
+//   app.post("/api/products/:id", function(req, res) {
+//     //var condition = "id = " + req.params.id;
+//     console.log(req,body);
+//     dbProduct.update({
+//       where: {
+//       isPurchased: req.body.isPurchased
+//       }
+//   }).then(function(dbProduct) {
+//     res.redirect('/userRegistry');
+//   //res.json(dbProduct);
+//   }
+//   );
+// });
+
 };
