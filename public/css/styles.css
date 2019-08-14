@@ -16,6 +16,7 @@ body, html {
   text-shadow: 2px 2px 3px lightpink;
   margin-left: 3%;
   padding-top: 0;
+  animation-iteration-count: 1;
 }
 
 .container1 {
@@ -27,9 +28,17 @@ body, html {
   /* position: absolute; */
   max-width: 100%;
 }
-.container2 {
+.container2  {
   background-color: rgb(255, 220, 226);
   height:100%;
+}
+.container3 {
+  background-color: rgb(255, 220, 226);
+  height:100%;
+}
+.user-reg-card {
+  width:70%;
+  margin-left: 15%;
 }
 .back-home-btn {
   color: black;
@@ -48,13 +57,17 @@ body, html {
 .index-container {
   border: solid;
   max-width: 700px;
-  margin-top: 90px;
+  margin-top: 100px;
   padding: 30px;
   position: relative;
   margin-left: 28%;
   z-index: 5;
+  height: 90%;
 
-
+}
+#submit-product {
+  color: black;
+  font-weight: 600;
 }
 .background-opacity {
   background-color: rgba(245, 245, 245, 0.4);
@@ -81,8 +94,11 @@ h2 {
   text-shadow: 3px 3px 5px black;
   /* padding-bottom: 20px; */
 }
+.buttons {
+  padding: 30px;
+}
 .index-btn {
-  width: 35%;
+  width: 40%;
   font-weight: bold;
 }
 .reg-heading {

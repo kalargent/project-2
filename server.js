@@ -6,13 +6,11 @@ var db = require("./models");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
-// var methodOverride = require('method-override')
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-// app.use(methodOverride('_method'));
 
 // Handlebars
 app.engine(

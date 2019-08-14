@@ -31,6 +31,7 @@ module.exports = function (app) {
     });
   })
 
+<<<<<<< HEAD
   // app.get("/", function (req, res) {
   // console.log(req.params);
   // db.users.findOne({
@@ -49,10 +50,20 @@ module.exports = function (app) {
   // Delete an example by id
   app.delete("/api/products/:id", function (req, res) {
     db.Product.destroy({ where: { id: req.params.id } }).then(function (dbProduct) {
+=======
+  // Delete an example by id
+  app.delete("/api/products/:id", function(req, res) {
+    db.Product.destroy({ 
+      where: { 
+        id: req.params.id 
+      } 
+    }).then(function(dbProduct) {
+>>>>>>> origin
       res.json(dbProduct);
     });
   });
 
+<<<<<<< HEAD
 
   // PUT route for updating items (userRegistry.handlebars)
   app.put("/api/products/:id", function (req, res) {
@@ -66,4 +77,20 @@ module.exports = function (app) {
         res.json(dbProduct);
       });
   });
+=======
+//   app.post("/api/products/:id", function(req, res) {
+//     //var condition = "id = " + req.params.id;
+//     console.log(req,body);
+//     dbProduct.update({
+//       where: {
+//       isPurchased: req.body.isPurchased
+//       }
+//   }).then(function(dbProduct) {
+//     res.redirect('/userRegistry');
+//   //res.json(dbProduct);
+//   }
+//   );
+// });
+
+>>>>>>> origin
 };
