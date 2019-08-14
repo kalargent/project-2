@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Get all examples
   // app.get("/api/examples", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
@@ -8,29 +8,30 @@ module.exports = function(app) {
   //   });
   // });
 
-    // Create a new user
-    app.post("/api/users", function(req, res) {
-      console.log(req.body);
-      db.User.create(req.body).then(function(dbUser) {
-        res.json(dbUser);
-      });
+  // Create a new user
+  app.post("/api/users", function (req, res) {
+    console.log(req.body);
+    db.User.create(req.body).then(function (dbUser) {
+      res.json(dbUser);
     });
+  });
 
   // Create a new product
-  app.post("/api/products", function(req, res) {
-    db.Product.create(req.body).then(function(dbProduct) {
-      console.log(dbProduct); 
+  app.post("/api/products", function (req, res) {
+    db.Product.create(req.body).then(function (dbProduct) {
+      console.log(dbProduct);
       res.json(dbProduct);
     });
   });
 
   // For the tests 
-  app.get("/api/products", function(req,res){
-    db.Product.findAll({}).then(function(dbProduct){
+  app.get("/api/products", function (req, res) {
+    db.Product.findAll({}).then(function (dbProduct) {
       res.json(dbProduct)
-    }); 
+    });
   })
 
+<<<<<<< HEAD
   // Delete an example by id
   app.delete("/api/products/:id", function(req, res) {
     db.Product.destroy({ 
@@ -38,10 +39,31 @@ module.exports = function(app) {
         id: req.params.id 
       } 
     }).then(function(dbProduct) {
+=======
+  // app.get("/", function (req, res) {
+  // console.log(req.params);
+  // db.users.findOne({
+  //   where: {
+  //     firstName: req.body
+  //   }, 
+  //   include: [db.Product]
+  // }).then (function (dbUser) {
+  //   res.json(dbUser); 
+  //   console.log("you returned a user"); 
+  //   console.log(dbUser); 
+  // })
+  // res.json({});
+  //})
+
+  // Delete an example by id
+  app.delete("/api/products/:id", function (req, res) {
+    db.Product.destroy({ where: { id: req.params.id } }).then(function (dbProduct) {
+>>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
       res.json(dbProduct);
     });
   });
 
+<<<<<<< HEAD
 //   app.post("/api/products/:id", function(req, res) {
 //     //var condition = "id = " + req.params.id;
 //     console.log(req,body);
@@ -56,4 +78,19 @@ module.exports = function(app) {
 //   );
 // });
 
+=======
+
+  // PUT route for updating items (userRegistry.handlebars)
+  app.put("/api/products/:id", function (req, res) {
+    console.log(req.body);
+    db.Product.update(req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function (dbProduct) {
+        res.json(dbProduct);
+      });
+  });
+>>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
 };

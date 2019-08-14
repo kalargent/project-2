@@ -35,16 +35,73 @@
                 </tbody>
               </table>
             </div>
+<<<<<<< HEAD
           </div>
         </div>
       </div>
     </div>
+=======
+
+
+            <button type="submit" class="btn btn-primary" id="submit-product">Submit</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br> --}}
+<div class="row table text-center">
+  <div class="col-8 offset-2">
+    <div class="card mt-4">
+      <div class="card-body">
+        <h3 class="card-title">Item List</h3>
+        <table>
+
+          <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Store Name</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+          {{#each Products}}
+          {{#unless isPurchased}}
+          <tr>
+
+            <td>{{this.id}}</td>
+            <td>{{this.productName}}</td>
+            <td>{{this.store}}</td>
+            <td>$ {{this.price}}</td>
+            <td><button data-id="{{this.id}}" class="update-btn"><i class="fa fa-gift"></i></button></td>
+
+
+          </tr>
+          {{/unless}}
+          {{/each}}
+        </table>
+        {{!-- <ul>
+        {{#each Products}}
+        {{#unless isPurchased}}
+        
+        <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
+        {{/unless}}
+        {{/each}}
+</ul>  --}}
+        <a href="/">← Back To Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
 </div>
 
     <!--Javascript -->
 
     <script type="text/javascript">
 
+<<<<<<< HEAD
       // Material Select Initialization for Form
       $(document).ready(function () {
 
@@ -109,10 +166,79 @@
               console.log("deleted id ", + id);
               location.reload();
             }
+=======
+    // Capture the form inputs
+    /**  $("#submit-product").on("click", function (event) {
+        event.preventDefault();
+        console.log("i clicked dammit");
+  
+        // Form validation
+        function validateForm() {
+          var isValid = true;
+          $("#product-form .form-control").each(function () {
+            if ($(this).val() === "") {
+              isValid = false;
+            }
+          });
+  
+          return isValid;
+        }
+  
+        // If all required fields are filled
+        if (validateForm() == true) {
+          // Create an object for the user"s data
+          var newProduct = {
+            productName: $("#product-name").val(),
+            store: $("#store").val(),
+            price: $("#price").val(),
+            isPurchased: false
+  
+          };
+          console.log(newProduct);
+  
+          // Send the POST request.
+          $.ajax("/api/products", {
+            type: "POST",
+            data: newProduct
+          }).then(
+            function () {
+              console.log("created new product");
+              // Reload the page to get the updated list
+              //location.reload();
+              location.reload();
+            }
+          )
+  
+        }
+        else {
+          alert("Please fill out ALL fields before submitting!");
+        }
+      });
+  */
+    //Update request
+    $(".update-btn").on("click", function (event) {
+      event.preventDefault();
+      console.log("I clicked update button");
+      var id = $(this).data("id");
+      console.log(id);
+      $.ajax("/api/products/" + id, {
+        type: "PUT",
+        data: {isPurchased: true}
+      }).then(
+        function () {
+          console.log("updated id " + id);
+          location.reload();
+        }
+>>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
 
           );
 
+<<<<<<< HEAD
         });
       });
+=======
+    });
+  });
+>>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
 
     </script>
