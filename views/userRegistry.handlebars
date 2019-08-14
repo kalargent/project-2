@@ -29,8 +29,8 @@
                   <td>{{this.store}}</td>
                   <td>$ {{this.price}}</td>
                   <td>
-                    {{!-- <button data-id="{{this.id}}" class="update-btn btn-success"><i class="fa fa-gift"></i></button> --}}
-                    <a class="update-btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-shopping-cart" style ="font-size: 20px"></i>  Buy Gift</a>
+                    <button data-id="{{this.id}}" class="update-btn btn-sm btn-dark"><i class="fa fa-shopping-cart" style ="font-size: 20px">  Buy Gift</i></button>
+                    {{!-- <a data-id="{{this.id}}" class="update-btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-shopping-cart" style ="font-size: 20px"></i>  Buy Gift</a> --}}
                   </td>
                 </tr>
                 {{/unless}}
@@ -106,14 +106,14 @@
           </div>  
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <a href="#modalThankYou" class="btn btn-dark pay" id="pay">Pay</a>
+        <a href="/" class="btn btn-dark pay" id="pay">Pay</a>
       </div>
     </div>
   </div>
 </div>
 
 {{!-- Thank You --}}
-<div class="modal fade" id="modalThankYou" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel"
+{{!-- <div class="modal fade" id="modalThankYou" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel"
   aria-hidden="true">
   <div class="modal-dialog modal-notify modal-info" role="document">
     <div class="modal-content text-center">
@@ -133,7 +133,7 @@
     </div>
     <!--/.Content-->
   </div>
-</div>
+</div> --}}
 
 
     <!--Javascript -->
@@ -153,7 +153,7 @@
       .then(
         function () {
           console.log("updated id " + id);
-          //location.reload();
+          location.reload();
         }
       );
     });
