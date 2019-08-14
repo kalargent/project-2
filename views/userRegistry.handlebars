@@ -28,145 +28,95 @@
                   <td>{{this.productName}}</td>
                   <td>{{this.store}}</td>
                   <td>$ {{this.price}}</td>
-                  <td><button data-id="{{this.id}}" class="update-btn btn-success"><i class="fa fa-gift"></i></button></td>
+                  <td>
+                    {{!-- <button data-id="{{this.id}}" class="update-btn btn-success"><i class="fa fa-gift"></i></button> --}}
+                    <a href="" class="update-btn btn-dark" data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-gift"></i></a>
+                  </td>
                 </tr>
                 {{/unless}}
                 {{/each}}
                 </tbody>
               </table>
             </div>
-<<<<<<< HEAD
           </div>
         </div>
       </div>
     </div>
-=======
+</div>
 
-
-            <button type="submit" class="btn btn-primary" id="submit-product">Submit</button>
-          </form>
-
+{{!--Modal/Update --}}
+<div class="modal fade" id="modalUpdateRegistry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Card Info</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <h5>Enter payment info</h5>
+          <div class="form-row">
+            <div class="col">
+              <!-- First name -->
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input placeholder="First name" type="text" id="user-first-name" class="form-control">
+                <label for="user-firstname"></label>
+              </div>
+            </div>
+            <div class="col">
+              <!-- Last name -->
+              <div class="md-form">
+                <input placeholder="Last-name" type="text" id="user-last-name" class="form-control">
+                <label for="user-lastname"></label>
+              </div>
+            </div>
+          </div>
+        {{!-- Email --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input placeholder="Your email" type="email" id="pay-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="email"></label>
+        </div>
+        {{!-- Card Number --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-card prefix grey-text"></i>
+          <input placeholder="Card number" type="number" id="card-number" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="payment"></label>
+        </div>
+        {{!-- MM/YY --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-calendar prefix grey-text"></i>
+          <input placeholder="MM/YY" type="number" id="expiration" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="email"></label>
+        </div>
+        {{!-- CVC --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input placeholder="CVC" type="number" id="cvc" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="cvc"></label>
+        </div>
+        {{!-- Remember me --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input type="checkbox" id="cvc" class="form-check-input">
+          <label class="font-weight-bold form-check-label" for="checkbox624"></label>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<br> --}}
-<div class="row table text-center">
-  <div class="col-8 offset-2">
-    <div class="card mt-4">
-      <div class="card-body">
-        <h3 class="card-title">Item List</h3>
-        <table>
-
-          <tr>
-            <th>Product ID</th>
-            <th>Product Name</th>
-            <th>Store Name</th>
-            <th>Price</th>
-            <th></th>
-          </tr>
-          {{#each Products}}
-          {{#unless isPurchased}}
-          <tr>
-
-            <td>{{this.id}}</td>
-            <td>{{this.productName}}</td>
-            <td>{{this.store}}</td>
-            <td>$ {{this.price}}</td>
-            <td><button data-id="{{this.id}}" class="update-btn"><i class="fa fa-gift"></i></button></td>
-
-
-          </tr>
-          {{/unless}}
-          {{/each}}
-        </table>
-        {{!-- <ul>
-        {{#each Products}}
-        {{#unless isPurchased}}
-        
-        <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
-        {{/unless}}
-        {{/each}}
-</ul>  --}}
-        <a href="/">← Back To Home</a>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-dark" id="pay">Purchase Now</button>
       </div>
     </div>
   </div>
 </div>
->>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
-</div>
+
 
     <!--Javascript -->
 
     <script type="text/javascript">
 
-<<<<<<< HEAD
-      // Material Select Initialization for Form
-      $(document).ready(function () {
-
-        // Capture the form inputs
-        $("#submit-product").on("click", function (event) {
-          event.preventDefault();
-          console.log("i clicked dammit");
-
-          // Form validation
-          function validateForm() {
-            var isValid = true;
-            $("#product-form .form-control").each(function () {
-              if ($(this).val() === "") {
-                isValid = false;
-              }
-            });
-
-            return isValid;
-          }
-
-          // If all required fields are filled
-          if (validateForm() == true) {
-            // Create an object for the user"s data
-            var newProduct = {
-              productName: $("#product-name").val(),
-              store: $("#store").val(),
-              price: $("#price").val(),
-              isPurchased: false
-
-            };
-            console.log(newProduct);
-
-            // Send the POST request.
-            $.ajax("/api/products", {
-              type: "POST",
-              data: newProduct
-            }).then(
-              function () {
-                console.log("created new product");
-                // Reload the page to get the updated list
-                //location.reload();
-                location.reload();
-              }
-            )
-
-          }
-          else {
-            alert("Please fill out ALL fields before submitting!");
-          }
-        });
-
-        //Delete request
-        $(".delete-btn").on("click", function (event) {
-          event.preventDefault();
-          console.log("I clicked delete button");
-          var id = $(this).data("id");
-
-          $.ajax("/api/products/" + id, {
-            type: "DELETE"
-          }).then(
-            function () {
-              console.log("deleted id ", + id);
-              location.reload();
-            }
-=======
     // Capture the form inputs
     /**  $("#submit-product").on("click", function (event) {
         event.preventDefault();
@@ -229,16 +179,10 @@
           console.log("updated id " + id);
           location.reload();
         }
->>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
 
           );
 
-<<<<<<< HEAD
         });
-      });
-=======
-    });
-  });
->>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
+     
 
     </script>

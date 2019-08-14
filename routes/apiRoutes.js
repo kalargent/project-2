@@ -31,7 +31,6 @@ module.exports = function (app) {
     });
   })
 
-<<<<<<< HEAD
   // Delete an example by id
   app.delete("/api/products/:id", function(req, res) {
     db.Product.destroy({ 
@@ -39,58 +38,21 @@ module.exports = function (app) {
         id: req.params.id 
       } 
     }).then(function(dbProduct) {
-=======
-  // app.get("/", function (req, res) {
-  // console.log(req.params);
-  // db.users.findOne({
-  //   where: {
-  //     firstName: req.body
-  //   }, 
-  //   include: [db.Product]
-  // }).then (function (dbUser) {
-  //   res.json(dbUser); 
-  //   console.log("you returned a user"); 
-  //   console.log(dbUser); 
-  // })
-  // res.json({});
-  //})
-
-  // Delete an example by id
-  app.delete("/api/products/:id", function (req, res) {
-    db.Product.destroy({ where: { id: req.params.id } }).then(function (dbProduct) {
->>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
       res.json(dbProduct);
     });
   });
 
-<<<<<<< HEAD
-//   app.post("/api/products/:id", function(req, res) {
-//     //var condition = "id = " + req.params.id;
-//     console.log(req,body);
-//     dbProduct.update({
-//       where: {
-//       isPurchased: req.body.isPurchased
-//       }
-//   }).then(function(dbProduct) {
-//     res.redirect('/userRegistry');
-//   //res.json(dbProduct);
-//   }
-//   );
-// });
-
-=======
 
   // PUT route for updating items (userRegistry.handlebars)
   app.put("/api/products/:id", function (req, res) {
     console.log(req.body);
-    db.Product.update(req.body,
+    db.Product.update({isPurchased: true},
       {
         where: {
-          id: req.body.id
+          id: req.params.id
         }
       }).then(function (dbProduct) {
         res.json(dbProduct);
       });
   });
->>>>>>> 1cca840100081ef160c1291862c9db3c1ff8f177
 };
