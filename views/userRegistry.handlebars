@@ -28,7 +28,10 @@
                   <td>{{this.productName}}</td>
                   <td>{{this.store}}</td>
                   <td>$ {{this.price}}</td>
-                  <td><button data-id="{{this.id}}" class="update-btn btn-success"><i class="fa fa-gift"></i></button></td>
+                  <td>
+                    <button data-id="{{this.id}}" class="update-btn btn-sm btn-dark"><i class="fa fa-shopping-cart" style ="font-size: 20px">  Buy Gift</i></button>
+                    {{!-- <a data-id="{{this.id}}" class="update-btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-shopping-cart" style ="font-size: 20px"></i>  Buy Gift</a> --}}
+                  </td>
                 </tr>
                 {{/unless}}
                 {{/each}}
@@ -41,78 +44,141 @@
     </div>
 </div>
 
+{{!--Modal/Update --}}
+<div class="modal fade" id="modalUpdateRegistry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Purchase Gift</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <h5 class="text-center font-weight-bold">Please enter payment information</h5>
+          <div class="form-row">
+            <div class="col">
+              <!-- First name -->
+              <div class="md-form mb-5">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input placeholder="First name" type="text" id="user-first-name" class="form-control validate">
+                <label for="user-firstname"></label>
+              </div>
+            </div>
+            <div class="col">
+              <!-- Last name -->
+              <div class="md-form">
+                <input placeholder="Last-name" type="text" id="user-last-name" class="form-control validate">
+                <label for="user-lastname"></label>
+              </div>
+            </div>
+          </div>
+        {{!-- Email --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input placeholder="Your email" type="email" id="pay-email" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="email"></label>
+        </div>
+        {{!-- Card Number --}}
+        <div class="md-form mb-5">
+          <i class="fa fa-credit-card prefix grey-text"></i>
+          <input placeholder="Card number" type="text" id="card-number" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="payment"></label>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            {{!-- MM/YY --}}
+            <div class="md-form mb-5">
+              <i class="fa fa-calendar prefix grey-text"></i>
+              <input placeholder="MM/YY" type="text" id="expiration" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="date"></label>
+            </div>
+           </div> 
+            <div class="col">
+              {{!-- CVC --}}
+              <div class="md-form mb-5">
+                <i class="fa fa-lock prefix grey-text"></i>
+                <input placeholder="CVC" type="text" id="cvc" class="form-control validate">
+                <label data-error="wrong" data-success="right" for="cvc"></label>
+              </div>
+            </div>
+          </div>  
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <a href="/" class="btn btn-dark pay" id="pay">Pay</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Thank You --}}
+{{!-- <div class="modal fade" id="modalThankYou" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Payment Complete</p>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <i class="fa fa-gift fa-4x animated rotateIn mb-4"></i>
+        <h4>Thank you for purchasing a gift</h4>
+        <p>Your gift will be delivered to the address provided by the couple.</p>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer flex-center">
+        <a type="button" href="/" class="btn btn-dark" data-dismiss="modal">Exit</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div> --}}
+
+
     <!--Javascript -->
 
     <script type="text/javascript">
 
-      // Material Select Initialization for Form
-      $(document).ready(function () {
+    //Update request to Purchase item
+    $(".update-btn").on("click", function (event) {
+      event.preventDefault();
+      console.log("I clicked update button");
+      var id = $(this).data("id");
+      console.log(id);
+      $.ajax("/api/products/" + id, {
+        type: "PUT",
+        data: {isPurchased: true}
+      })
+      .then(
+        function () {
+          console.log("updated id " + id);
+          location.reload();
+        }
+      );
+    });
 
-        // Capture the form inputs
-        $("#submit-product").on("click", function (event) {
-          event.preventDefault();
-          console.log("i clicked dammit");
+    //Pay Button
+    $("#pay").on("click", function (event) {
+      event.preventDefault();
+      console.log("I paid for gift");
 
-          // Form validation
-          function validateForm() {
-            var isValid = true;
-            $("#product-form .form-control").each(function () {
-              if ($(this).val() === "") {
-                isValid = false;
-              }
-            });
-
-            return isValid;
-          }
-
-          // If all required fields are filled
-          if (validateForm() == true) {
-            // Create an object for the user"s data
-            var newProduct = {
-              productName: $("#product-name").val(),
-              store: $("#store").val(),
-              price: $("#price").val(),
-              isPurchased: false
-
-            };
-            console.log(newProduct);
-
-            // Send the POST request.
-            $.ajax("/api/products", {
-              type: "POST",
-              data: newProduct
-            }).then(
-              function () {
-                console.log("created new product");
-                // Reload the page to get the updated list
-                //location.reload();
-                location.reload();
-              }
-            )
-
-          }
-          else {
-            alert("Please fill out ALL fields before submitting!");
+      // Form validation
+      function validateForm() {
+        var isValid = true;
+        $("#modalUpdateRegistry .form-control").each(function () {
+          if ($(this).val() === "") {
+            isValid = false;
           }
         });
+        return isValid;
+      }
+      // If all required fields are filled
+      //if (validateForm() == true) {
+        //alert("Please fill out ALL fields before submitting!");
 
-        //Delete request
-        $(".delete-btn").on("click", function (event) {
-          event.preventDefault();
-          console.log("I clicked delete button");
-          var id = $(this).data("id");
-
-          $.ajax("/api/products/" + id, {
-            type: "DELETE"
-          }).then(
-            function () {
-              console.log("deleted id ", + id);
-              location.reload();
-            }
-
-          );
-
-        });
-      });
+      //location.reload("/");
+      //}
+    });
 
     </script>

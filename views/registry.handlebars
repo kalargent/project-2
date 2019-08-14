@@ -13,7 +13,7 @@
         <p>Please enter the name of the item that you would like to add to your registry below.</p>
       </div>
     </div>
-
+    {{!-- Add Registry Items --}}
     <div class="row add-product-row">
       <div class="col-lg-3">
         <div class="registry-container">
@@ -21,24 +21,23 @@
             <div class="card-body reg-card-body">
               <h5 class="card-title reg-card-title">Add Items</h5>
               <form id="product-form">
+                {{!-- Product --}}
                 <div class="form-group">
                   <label for="exampleInputEmail1">Product</label>
                   <input type="text" class="form-control" id="product-name" aria-describedby="productName"
                     placeholder="Enter product name">
-
                 </div>
+                {{!-- Store --}}
                 <div class="form-group">
                   <label for="store">Store</label>
                   <input type="text" class="form-control" id="store" placeholder="Enter the store name">
                 </div>
-
+                {{!-- Price --}}
                 <div class="form-group">
                   <label for="price">Price</label>
                   <input type="text" class="form-control" id="price" placeholder="Enter the product price">
                 </div>
-                
                 <button type="submit" class="btn btn- pink accent-1" id="submit-product">Add Item</button>
-
               </form>
 
             </div>
@@ -46,8 +45,8 @@
         </div>
       </div>
       <br>
+      {{!-- Registry Items Table --}}
       <div class="col-lg-9">
-        {{!-- <div class="table text-center"> --}}
         <div class="card mt-4">
           <div class="card-body">
             <h3 class="card-title text-center">Registry Items</h3>
@@ -75,17 +74,8 @@
                 </tbody>
               </table>
             </div>
-            {{!-- <ul>
-              {{#each Products}}
-              {{#unless isPurchased}}
-              
-              <li>{{this.id}} {{this.productName}} {{this.price}} {{this.store}}</li>
-              {{/unless}}
-              {{/each}}
-              </ul> --}}
           </div>
         </div>
-        {{!-- </div> --}}
       </div>
     </div>
   </div>
@@ -94,12 +84,14 @@
   <!--Javascript -->
 
   <script type="text/javascript">
+
     // Material Select Initialization for Form
     $(document).ready(function () {
       // Capture the form inputs
       $("#submit-product").on("click", function (event) {
         event.preventDefault();
         console.log("i clicked dammit");
+
         // Form validation
         function validateForm() {
           var isValid = true;
@@ -110,6 +102,7 @@
           });
           return isValid;
         }
+
         // If all required fields are filled
         if (validateForm() == true) {
           // Create an object for the user's data
@@ -123,6 +116,7 @@
             UserId: currentUser.id
           };
           console.log(newProduct);
+
           // Send the POST request.
           $.ajax("/api/products", {
             type: "POST",
@@ -144,6 +138,7 @@
           alert("Please fill out ALL fields before submitting!");
         }
       });
+
       //Delete request
       $(".delete-btn").on("click", function (event) {
         event.preventDefault();
@@ -159,4 +154,5 @@
         );
       });
     });
+    
   </script>
