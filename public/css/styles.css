@@ -64,7 +64,10 @@ body, html {
   z-index: 5;
   height: 90%;
 
-
+}
+#submit-product {
+  color: black;
+  font-weight: 600;
 }
 .background-opacity {
   background-color: rgba(245, 245, 245, 0.4);
