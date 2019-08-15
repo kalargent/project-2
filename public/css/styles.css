@@ -78,6 +78,7 @@ body, html {
   right: 0;
   z-index: -5;
 }
+
 hr {
   border-top: 1px solid rgba(0,0,0,.6);
 }
@@ -101,6 +102,21 @@ h2 {
   width: 40%;
   font-weight: bold;
 }
+
+@media (max-width:375px) {
+  .index-btn{
+    width: 90%; 
+  }
+
+  .background-opacity{
+    width: 100%; 
+  }
+
+  .index-container {
+    margin-left: 0; 
+  }
+}
+
 .pay {
   font-size: 16px;
 }
