@@ -57,12 +57,12 @@ body, html {
 .index-container {
   border: solid;
   max-width: 700px;
-  margin-top: 100px;
   padding: 30px;
-  position: relative;
-  margin-left: 28%;
+  margin: 8% auto 0 auto;
   z-index: 5;
   height: 90%;
+  /* left: 25%; */
+  position: relative
 
 }
 #submit-product {
@@ -71,12 +71,12 @@ body, html {
 }
 .background-opacity {
   background-color: rgba(245, 245, 245, 0.4);
-  position: absolute;
+  /* position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -5;
+  z-index: -5; */
 }
 hr {
   border-top: 1px solid rgba(0,0,0,.6);
@@ -152,4 +152,58 @@ table td {
 p {
   font-weight: 500;
   font-family: 'Vidaloka', serif;
+}
+
+@media only screen and (max-width:768px)
+{
+  .index-btn {
+    width: auto;
+
+  }
+  .index-container {
+    /*max-width: 750px;*/
+    margin-left: 0;
+  }
+  .navbar-brand {
+    /* margin-left: 0; */
+    text-align: center;
+  }
+}
+@media only screen and (max-width:768px)
+{
+  .index-btn {
+    width: auto;
+
+  }
+  .index-container {
+    /*max-width: 750px;*/
+    margin-left: 0;
+  }
+  .navbar-brand {
+    /* margin-left: 0; */
+    text-align: center;
+  }
+}
+@media only screen and (max-width:980px)
+{
+  .index-btn {
+    width: auto;
+
+  }
+
+  .navbar-brand {
+    /* margin-left: 0; */
+    text-align: center;
+  }
+}
+@media only screen and (min-width:980px)
+{
+  .index-btn {
+    width: auto;
+
+  }
+  .navbar-brand {
+    /* margin-left: 0; */
+    text-align: center;
+  }
 }

@@ -29,8 +29,8 @@
                   <td>{{this.store}}</td>
                   <td>$ {{this.price}}</td>
                   <td>
-                    <button data-id="{{this.id}}" class="update-btn btn-sm btn-dark"><i class="fa fa-shopping-cart" style ="font-size: 20px">  Buy Gift</i></button>
-                    {{!-- <a data-id="{{this.id}}" class="update-btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-shopping-cart" style ="font-size: 20px"></i>  Buy Gift</a> --}}
+                    <button data-id="{{this.id}}" class="update-btn btn-sm btn-dark"data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-shopping-cart" style ="font-size: 20px">  Buy Gift</i></button>
+                    {{!-- <a class="update-btn btn-sm btn-dark" href="#" data-toggle="modal" data-target="#modalUpdateRegistry"><i class="fa fa-shopping-cart" style ="font-size: 20px"></i>  Buy Gift</a> --}}
                   </td>
                 </tr>
                 {{/unless}}
@@ -106,7 +106,7 @@
           </div>  
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <a href="/" class="btn btn-dark pay" id="pay">Pay</a>
+        <a href="#modalThankYou" class="btn btn-dark pay" data-id="{{this.id}}">Pay</a>
       </div>
     </div>
   </div>
@@ -131,10 +131,9 @@
         <a type="button" href="/" class="btn btn-dark" data-dismiss="modal">Exit</a>
       </div>
     </div>
-    <!--/.Content-->
   </div>
-</div> --}}
-
+</div>
+ --}}
 
     <!--Javascript -->
 
@@ -143,9 +142,9 @@
     //Update request to Purchase item
     $(".update-btn").on("click", function (event) {
       event.preventDefault();
-      console.log("I clicked update button");
+      console.log("I clicked pay");
       var id = $(this).data("id");
-      console.log(id);
+      //console.log(id);
       $.ajax("/api/products/" + id, {
         type: "PUT",
         data: {isPurchased: true}
@@ -153,32 +152,16 @@
       .then(
         function () {
           console.log("updated id " + id);
-          location.reload();
+          $("#pay").on("click", function (event) {
+            event.preventDefault();
+            $("#modalThankYou").modal();
+          })
+          console.log("I paid for gift");
+          //location.reload()
         }
       );
+         location.reload(); 
     });
 
-    //Pay Button
-    $("#pay").on("click", function (event) {
-      event.preventDefault();
-      console.log("I paid for gift");
-
-      // Form validation
-      function validateForm() {
-        var isValid = true;
-        $("#modalUpdateRegistry .form-control").each(function () {
-          if ($(this).val() === "") {
-            isValid = false;
-          }
-        });
-        return isValid;
-      }
-      // If all required fields are filled
-      //if (validateForm() == true) {
-        //alert("Please fill out ALL fields before submitting!");
-
-      //location.reload("/");
-      //}
-    });
 
     </script>
