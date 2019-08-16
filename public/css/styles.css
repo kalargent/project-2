@@ -103,19 +103,7 @@ h2 {
   font-weight: bold;
 }
 
-@media (max-width:375px) {
-  .index-btn{
-    width: 90%; 
-  }
 
-  .background-opacity{
-    width: 100%; 
-  }
-
-  .index-container {
-    margin-left: 0; 
-  }
-}
 
 .pay {
   font-size: 16px;
@@ -168,4 +156,41 @@ table td {
 p {
   font-weight: 500;
   font-family: 'Vidaloka', serif;
+}
+
+@media (max-width:375px) {
+  .index-btn{
+    width: 90%; 
+  }
+
+  .background-opacity{
+    width: 100%; 
+  }
+
+  .index-container {
+    margin-left: 0; 
+  }
+  
+  .modal {
+    width: 95% ;
+    padding-top: 40px; 
+  }
+
+  .registry-container { 
+    width: 70%; 
+  }
+
+
+
+  /* .card-body { 
+    width: 60%; 
+  } */
+
+  .card {
+    width: 80%
+  }
+
+  .item-card {
+    width: 80%
+  }
 }
